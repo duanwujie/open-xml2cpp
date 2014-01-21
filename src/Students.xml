@@ -1,0 +1,12 @@
+<Class name="计算机软件班">
+    <Students>
+        <student name="张三" studentNo="13031001" sex="男" age="22">
+            <phone>88208888</phone>
+            <address>西安市太白南路二号</address>
+        </student>
+        <student name="李四" studentNo="13031002" sex="男" age="20">
+            <phone>88206666</phone>
+            <address>西安市光华路</address>
+        </student>
+    </Students>
+</Class>

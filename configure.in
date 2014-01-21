@@ -1,0 +1,93 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ(2.61)
+AC_INIT([xml2cpp],[1.0.1],[dhacklove@163.com])
+AC_CONFIG_SRCDIR([src/xml2cpp.cpp])
+AC_CONFIG_HEADER([config.h])
+
+# Unit tests with Check framework
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.4],,[AC_MSG_RESULT([testing is disabled])])
+
+# Checks for programs.
+AC_PROG_CC
+AC_PROG_CXX
+AM_PROG_CC_C_O
+
+
+# Checks for libraries.
+#AC_CHECK_LIB(rt, timer_create,,[echo -e "\tPlease install librt";exit])
+#AC_CHECK_LIB(ssl, SSL_new,,[echo -e "\tPlease install libssl-dev";exit])
+#AC_CHECK_LIB(crypto, ERR_reason_error_string,,[echo -e "\tPlease install libssl-dev";exit])
+#AC_CHECK_LIB(confuse, cfg_init,,[echo -e "\tPlease install libconfuse-dev (version >= 2.6)";exit])
+# Checks for libraries.
+#AC_SEARCH_LIBS(pthread_atfork, pthread, [], [AC_ERROR(Requires pthreads)])
+#AC_SEARCH_LIBS(event_init, ev, [], [AC_ERROR(Requires ev)])
+#AX_CXX_CHECK_LIB(glog, [main], [], [
+#			       echo "Error Requires glog"
+#			       exit -1
+#			       ])
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([arpa/inet.h fcntl.h limits.h netdb.h netinet/in.h stddef.h stdint.h stdlib.h string.h sys/socket.h sys/time.h syslog.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_TYPE_UID_T
+AC_C_INLINE
+AC_TYPE_INT16_T
+AC_TYPE_INT32_T
+AC_TYPE_INT64_T
+AC_TYPE_INT8_T
+AC_TYPE_MODE_T
+AC_TYPE_PID_T
+AC_TYPE_SIZE_T
+AC_TYPE_SSIZE_T
+AC_HEADER_TIME
+AC_STRUCT_TM
+AC_TYPE_UINT16_T
+AC_TYPE_UINT32_T
+AC_TYPE_UINT64_T
+AC_TYPE_UINT8_T
+AC_C_VOLATILE
+
+# Doxygen
+#DX_HTML_FEATURE(ON)
+#DX_CHM_FEATURE(OFF)
+#DX_CHI_FEATURE(OFF)
+#DX_MAN_FEATURE(ON)
+#DX_RTF_FEATURE(OFF)
+#DX_XML_FEATURE(OFF)
+#DX_PDF_FEATURE(OFF)
+#DX_PS_FEATURE(OFF)
+#DX_INIT_DOXYGEN(turnserver, Doxyfile)
+
+AM_INIT_AUTOMAKE(scratchserver, $PACKAGE_VERSION)
+
+# Checks for library functions.
+AC_FUNC_FORK
+AC_FUNC_MALLOC
+AC_FUNC_MEMCMP
+AC_FUNC_SELECT_ARGTYPES
+AC_TYPE_SIGNAL
+AC_FUNC_STRERROR_R
+AC_FUNC_VPRINTF
+AC_CHECK_FUNCS([dup2 gettimeofday memset select pselect socket strchr strdup strerror sigaction signal])
+
+# Enable compilation in debug mode.
+
+# Enable setting XOR_PEER_ADDRESS_MAX.
+
+AC_CONFIG_FILES([Makefile
+                 src/Makefile])
+AC_OUTPUT
+
+AC_MSG_NOTICE([Configuration
+
+AC_PACKAGE_NAME version AC_PACKAGE_VERSION
+  Enable debug build: .............. $enable_debug_build
+  User-defined FD_SETSIZE: ......... $enable_fdsetsize
+  User-defined XOR_PEER_ADDRESS_MAX: $enable_xor_peer_address_max
+])
+
